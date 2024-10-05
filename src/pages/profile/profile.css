@@ -1,0 +1,39 @@
+.profile{
+    display: flex;
+}
+.profile_right{
+    flex: 9;
+}
+.profile_bottom{
+    display: flex;
+}
+.profile_cover {
+    height: 350px;
+    position: relative;
+}
+img.profile_cover_image {
+    height: calc(100% - 70px);
+    width: 100%;
+    object-fit: cover;
+}
+img.profile_Image {
+    position: absolute;
+    top: calc(100% - 70px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+}
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+span.profiel_info_nickname {
+    font-weight: 300;
+    font-size: 14px;
+}

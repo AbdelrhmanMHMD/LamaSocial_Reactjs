@@ -1,0 +1,65 @@
+.rightbar {
+	flex: 3;
+}
+.rightbar_wrapper {
+	padding: 20px 20px 0 0;
+}
+.rightbar_birthday_container {
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+img.rightbar_birthday_img {
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+}
+img.rightbar_ad_image {
+	border-radius: 10px;
+	width: 100%;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+h3.rightbar_title {
+	margin-bottom: 10px;
+}
+.rightbar_profile_info {
+	margin-bottom: 20px;
+}
+.profile_info_item {
+	font-size: 15px;
+	display: flex;
+	gap: 8px;
+	margin-bottom: 5px;
+}
+span.profile_info_key {
+	font-weight: 300;
+}
+ul.profile_following_list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: space-between;
+}
+li.profile_following_item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	flex: 1;
+}
+img.profile_following_image {
+	width: 60px;
+	height: 60px;
+	border-radius: 5px;
+	object-fit: cover;
+	margin-bottom: 3px;
+}
+span.profile_following_name {
+	font-size: 12px;
+    text-align: center;
+}
