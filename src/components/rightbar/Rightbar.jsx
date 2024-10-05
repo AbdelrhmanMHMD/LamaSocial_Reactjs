@@ -1,7 +1,7 @@
 import "./rightbar.css";
 import OnlineFriends from "./onlineFriends/OnlineFriends";
 
-const Rightbar = ({ profile, onlineFriends, users }) => {
+const Rightbar = ({ profile, onlineFriends, users,userProfile }) => {
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 	const Rightbar_home = () => {
@@ -37,15 +37,15 @@ const Rightbar = ({ profile, onlineFriends, users }) => {
 				<div className="rightbar_profile_info">
 					<div className="profile_info_item">
 						<span className="profile_info_key">City:</span>
-						<span className="profile_info_value">Cairo</span>
+						<span className="profile_info_value">{userProfile?.city}</span>
 					</div>
 					<div className="profile_info_item">
 						<span className="profile_info_key">From:</span>
-						<span className="profile_info_value">Menofia</span>
+						<span className="profile_info_value">{userProfile?.from}</span>
 					</div>
 					<div className="profile_info_item">
 						<span className="profile_info_key">Relationship:</span>
-						<span className="profile_info_value">Single</span>
+						<span className="profile_info_value">{userProfile?.relationship}</span>
 					</div>
 				</div>
 				<h3 className="rightbar_title">User Friends</h3>
@@ -54,11 +54,12 @@ const Rightbar = ({ profile, onlineFriends, users }) => {
 						<li key={u?.id} className="profile_following_item">
 							<img
 								src={PF + u?.profilePicture}
+								onError={(e) => e.target.src=PF+'/person/noAvatar.png'}
 								alt=""
 								className="profile_following_image"
 							/>
 							<span className="profile_following_name">
-								{u?.userName}
+								{u?.displayName}
 							</span>
 						</li>
 					))}

@@ -8,10 +8,11 @@ const Friend = ({ friend }) => {
 				<img
 					className="leftbar_friends_list_item_image"
 					src={PF+friend.profilePicture}
+					onError={(e) => e.target.src=PF+'/person/noAvatar.png'}
 					alt="person"
 				/>
 				<span className="leftbar_friends_list_item_text">
-					{friend.userName}
+					{friend.displayName}
 				</span>
 			</li>
 		</ul>

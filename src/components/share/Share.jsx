@@ -13,7 +13,7 @@ const Share = ({ loggedUser }) => {
 					<img
 						className="share_top_image"
 						src={PF + loggedUser?.profilePicture}
-						onError={(e) => (e.target.src = PF + "/noAvatar.png")}
+						onError={(e) => (e.target.src = PF + "/person/noAvatar.png")}
 						alt="Person"
 					/>
 					<input

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./post.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
+import { format } from "timeago.js";
+import { Link } from "react-router-dom";
+
 const Post = ({ post, author }) => {
 	const [numOfReacts, setNumOfReacts] = useState(post.numOfReacts);
 	const [isLiked, setIsLiked] = useState(false);
@@ -16,16 +19,29 @@ const Post = ({ post, author }) => {
 			<div className="post_wrapper">
 				<div className="post_top">
 					<div className="post_top_left">
-						<img
-							className="post_top_left_image"
-							src={PF + author.profilePicture}
-							alt=""
-						/>
+						<Link
+							to={`/profile/${author.id}?username=${author.userName}`}
+						>
+							<img
+								className="post_top_left_image"
+								src={PF + author.profilePicture}
+								onError={(e) =>
+									(e.target.src = PF + "/person/noAvatar.png")
+								}
+								alt=""
+							/>
+						</Link>
 						<div className="post_info">
-							<span className="post_info_username">
-								{author.userName}
+							<Link
+								to={`/profile/${author.id}?username=${author.userName}`}
+								style={{textDecoration:'none'}}
+								className="post_info_username"
+							>
+									{author.displayName}
+							</Link>
+							<span className="post_info_time">
+								{format(post.date)}
 							</span>
-							<span className="post_info_time">{post.date}</span>
 						</div>
 					</div>
 					<div className="post_top_right">
@@ -43,13 +59,13 @@ const Post = ({ post, author }) => {
 				<div className="post_bottom">
 					<div className="post_bottom_left">
 						<img
-							src={PF +"/like.png"}
+							src={PF + "/like.png"}
 							alt="like"
 							onClick={handlePostReact}
 							className="post_reacts_image"
 						/>
 						<img
-							src={PF +"/love.png"}
+							src={PF + "/love.png"}
 							alt="love"
 							onClick={handlePostReact}
 							className="post_reacts_image"

@@ -6,9 +6,11 @@ import "./profile.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+	const userProfileId = useParams().id;
 
 	const [loggedUser, setLoggedUser] = useState({});
 	useEffect(() => {
@@ -30,14 +32,25 @@ const Profile = () => {
 		fetchUsers();
 	}, []);
 
+	const [userProfile, setUserProfile] = useState({});
+	useEffect(() => {
+		const fetchUserProfile = async () => {
+			const { data } = await axios.get(
+				`http://localhost:8000/users/${userProfileId}`
+			);
+			setUserProfile(data);
+		};
+		fetchUserProfile();
+	}, [userProfileId]);
+
 	const [posts, setPosts] = useState([]);
 	useEffect(() => {
 		const fetchPosts = async () => {
-			const { data } = await axios.get("http://localhost:8000/posts");
-			setPosts(data);
+			const { data } = await axios.get(`http://localhost:8000/posts`);
+			setPosts(data.filter((d) => d.userId == userProfileId));
 		};
 		fetchPosts();
-	}, []);
+	}, [userProfileId]);
 	return (
 		<>
 			<Topbar loggedUser={loggedUser} />
@@ -49,14 +62,17 @@ const Profile = () => {
 					<div className="profile_top">
 						<div className="profile_cover">
 							<img
-								src={PF + "/post/3.jpg"}
+								src={PF + userProfile?.coverImage}
+								onError={(e) => {
+									e.target.src = PF + "/cover/noCover.png";
+								}}
 								alt=""
 								className="profile_cover_image"
 							/>
 							<img
-								src={PF + loggedUser?.profilePicture}
+								src={PF + userProfile?.profilePicture}
 								onError={(e) => {
-									e.target.src = PF + "/noAvatar.png";
+									e.target.src = PF + "/person/noAvatar.png";
 									e.target.style.background = "white";
 								}}
 								alt=""
@@ -65,10 +81,10 @@ const Profile = () => {
 						</div>
 						<div className="profile_info">
 							<span className="profile_info_name">
-								{loggedUser?.userName}
+								{userProfile?.displayName}
 							</span>
 							<span className="profiel_info_nickname">
-								({loggedUser?.nickName})
+								({userProfile?.nickName})
 							</span>
 						</div>
 					</div>
@@ -78,7 +94,11 @@ const Profile = () => {
 							posts={posts}
 							users={users}
 						/>
-						<Rightbar profile users={users} />
+						<Rightbar
+							profile
+							users={users}
+							userProfile={userProfile}
+						/>
 					</div>
 				</div>
 			</div>

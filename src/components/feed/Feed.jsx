@@ -11,7 +11,7 @@ const Feed = ({ loggedUser, posts, users }) => {
 					<Post
 						key={p.id}
 						post={p}
-						author={users.find((u) => u.id === p.author)}
+						author={users.find((u) => u.id === p.userId)}
 					/>
 				))}
 			</div>

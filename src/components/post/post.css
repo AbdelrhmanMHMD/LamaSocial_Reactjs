@@ -27,8 +27,9 @@ img.post_top_left_image {
 	display: flex;
 	flex-direction: column;
 }
-span.post_info_username {
+.post_info_username {
 	cursor: pointer;
+	color: black;
 }
 span.post_info_time {
 	font-size: 12px;

@@ -73,13 +73,13 @@ const Topbar = ({ loggedUser }) => {
 					</div>
 				</div>
 				<Link
-					to={`/profile/:${loggedUser.userName}`}
+					to={`/profile/${loggedUser.id}?username=${loggedUser.userName}`}
 					style={{ textDecoration: "none" }}
 				>
 					<img
 						src={PF + loggedUser?.profilePicture}
 						onError={(e) => {
-							e.target.src = PF + "/noAvatar.png";
+							e.target.src = PF + "/person/noAvatar.png";
 						}}
 						className="topbarImage"
 					/>

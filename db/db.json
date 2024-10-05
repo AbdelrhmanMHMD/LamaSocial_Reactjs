@@ -1,56 +1,93 @@
 {
 	"loggedUser": {
 		"id": 1,
-		"userName": "Abdelrhman MHMD Bayoumi",
+		"userName": "abdelrhmanmhmdbayoumi",
+		"displayName": "Abdelrhman MHMD Bayoumi",
 		"profilePicture": "/person/person1.jpg",
 		"numOfFriendRequests": 0,
 		"numOfMsgs": 3,
 		"numOfNotifications": 22,
-		"nickName" : "Bayoumiiiiii"
+		"nickName": "Bayoumiiiiii"
 	},
 	"users": [
 		{
 			"id": 1,
-			"userName": "Abdelrhman MHMD Bayoumi",
+			"userName": "abdelrhmanmhmdbayoumi",
+			"displayName": "Abdelrhman MHMD Bayoumi",
 			"profilePicture": "/person/person1.jpg",
+			"coverImage": "/cover/1.jpg",
+			"nickName": "Bayoumiiiiii",
+			"city":"Cairo",
+			"from":"Menofia",
+			"relationship":"Single",
 			"online": true
 		},
 		{
 			"id": 2,
-			"userName": "Amr MHMD Bayoumi",
+			"userName": "amrmhmdbayoumi",
+			"displayName": "Amr MHMD Bayoumi",
 			"profilePicture": "/person/person2.jpg",
+			"coverImage": "/cover/2.jpg",
+			"nickName": "Amoooor",
+			"city":"Menofia",
+			"from":"Sharqia",
+			"relationship":"Single",
 			"online": false
 		},
 		{
 			"id": 3,
-			"userName": "Ahmed Mohamed",
+			"userName": "ahmedmohamed",
+			"displayName": "Ahmed Mohamed",
 			"profilePicture": "/person/person3.jpg",
+			"coverImage": "/cover/3.jpg",
+			"nickName": "Hamasaaaa",
+			"city":"Menofia",
+			"from":"Sini",
+			"relationship":"Married",
 			"online": true
 		},
 		{
 			"id": 4,
-			"userName": "Adel Fayez",
+			"userName": "adelfayez",
+			"displayName": "Adel Fayez",
 			"profilePicture": "/person/person4.jpg",
+			"coverImage": "/cover/4.jpg",
+			"nickName": "DoOola",
+			"city":"Menofia",
+			"from":"Ghardaka",
+			"relationship":"Divorced",
 			"online": false
 		},
 		{
 			"id": 5,
-			"userName": "Mostafa Ahmed",
+			"userName": "mostafaahmed",
+			"displayName": "Mostafa Ahmed",
 			"profilePicture": "/person/person5.jpg",
+			"coverImage": "/cover/5.jpg",
+			"nickName": "TeEefa",
+			"city":"Cairo",
+			"from":"Menofia",
+			"relationship":"single",
 			"online": true
 		},
 		{
 			"id": 6,
-			"userName": "Ahmed Soliman",
+			"userName": "ahmedsoliman",
+			"displayName": "Ahmed Soliman",
 			"profilePicture": "/person/person6.jpg",
+			"coverImage": "",
+			"nickName": "SoOolii",
+			"city":"Cairo",
+			"from":"Menofia",
+			"relationship":"single",
 			"online": true
 		}
 	],
 	"posts": [
 		{
 			"id": 1,
-			"author": 1,
-			"date": "5 minutes ago",
+			"userId": 1,
+			"date": "2024-10-05 19:00",
 			"desc": "this is my first post",
 			"photo": "/post/1.jpg",
 			"numOfReacts": 32,
@@ -58,16 +95,16 @@
 		},
 		{
 			"id": 2,
-			"author": 3,
-			"date": "30 minutes ago",
+			"userId": 3,
+			"date": "2024-10-05 07:00",
 			"photo": "/post/2.jpg",
 			"numOfReacts": 5,
 			"numOfComments": 14
 		},
 		{
 			"id": 3,
-			"author": 4,
-			"date": "1 hour ago",
+			"userId": 4,
+			"date": "2024-10-04 15:34",
 			"desc": "this is my third post",
 			"photo": "/post/3.jpg",
 			"numOfReacts": 14,
