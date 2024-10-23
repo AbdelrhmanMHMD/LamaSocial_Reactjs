@@ -32,6 +32,24 @@
 	justify-content: space-between;
 	padding: 0 6px 8px 6px;
 }
+.share_image_preview {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 20px;
+	position: relative;
+}
+.share_image_preview i {
+	position: absolute;
+	top: 10px;
+	right: 55px;
+	color: white;
+	cursor: pointer;
+	font-size: 20px;
+}
+img.share_image_image {
+	object-fit: cover;
+	width: 80%;
+}
 .share_options {
 	display: flex;
 }

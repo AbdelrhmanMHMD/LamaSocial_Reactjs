@@ -70,10 +70,11 @@ const Post = ({ post, loggedUser, author }) => {
 				<div className="post_center">
 					<span className="post_center_text">{post?.desc}</span>
 					<img
-						src={PF + post.photo}
+						src={post.photo}
 						alt=""
 						className="post_center_image"
 						onDoubleClick={handlePostReact}
+						onError={(e) => (e.target.src = PF + post.photo)}
 					/>
 				</div>
 				<div className="post_bottom">

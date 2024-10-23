@@ -8,18 +8,33 @@ import axios from "axios";
 
 const Share = ({ loggedUser }) => {
 	const [postText, setPostText] = useState("");
-	const [postImages, setPostImages] = useState(null);
+	const [postImage, setPostImage] = useState(null);
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+	const handleImageUpload = (e) => {
+		const file = e.target.files[0];
+		const reader = new FileReader();
+
+		// Load the image and update state when the file is read
+		reader.onloadend = () => {
+			setPostImage(reader.result); // Set the image data as base64
+		};
+
+		// Read the image file as a data URL (base64 string)
+		if (file) {
+			reader.readAsDataURL(file);
+		}
+	};
 
 	const handleShareSubmit = (e) => {
 		e.preventDefault();
-		console.log(postImages);
+
 		// create post object
 		const post = {
 			userId: loggedUser.id,
 			date: new Date(),
 			desc: postText,
-			photo: "/post/3.jpg",
+			photo: postImage,
 			numOfComments: 0,
 			reacts: [],
 		};
@@ -53,6 +68,22 @@ const Share = ({ loggedUser }) => {
 					/>
 				</div>
 				<hr className="share_hr" />
+				{postImage ? (
+					<div className="share_image_preview">
+						<img
+							className="share_image_image"
+							src={postImage}
+							alt="share"
+						/>
+						<i
+							onClick={() => setPostImage(null)}
+							className="fa-regular fa-rectangle-xmark"
+						></i>
+					</div>
+				) : (
+					""
+				)}
+
 				<form className="share_bottom" onSubmit={handleShareSubmit}>
 					<div className="share_options">
 						<label htmlFor="photo" className="share_option">
@@ -60,9 +91,8 @@ const Share = ({ loggedUser }) => {
 								type="file"
 								className="share_option_file_input"
 								id="photo"
-								accept=".jpg,.png,.jpeg"
-								onChange={(e) => setPostImages(e.target.files)}
-								multiple
+								accept="image/*,video/*"
+								onChange={handleImageUpload}
 							/>
 							<FilterIcon
 								className="share_option_icon"
