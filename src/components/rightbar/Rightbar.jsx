@@ -1,10 +1,10 @@
 import "./rightbar.css";
 import OnlineFriends from "./onlineFriends/OnlineFriends";
+import { Link } from "react-router-dom";
 
-const Rightbar = ({ profile, onlineFriends, users,userProfile }) => {
+const Rightbar = ({ profile, onlineFriends, users, userProfile }) => {
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
-	const Rightbar_home = () => {
+	const RightbarHome = () => {
 		return (
 			<>
 				<div className="rightbar_birthday_container">
@@ -20,7 +20,7 @@ const Rightbar = ({ profile, onlineFriends, users,userProfile }) => {
 				</div>
 				<img
 					src={PF + "/ad.jpg"}
-					alt="ad image"
+					alt="ad car"
 					className="rightbar_ad_image"
 				/>
 				<h4 className="rightbar_title">Online friends</h4>
@@ -30,38 +30,54 @@ const Rightbar = ({ profile, onlineFriends, users,userProfile }) => {
 			</>
 		);
 	};
-	const Rightbar_profile = () => {
+	const RightbarProfile = () => {
 		return (
 			<>
 				<h3 className="rightbar_title">User information</h3>
 				<div className="rightbar_profile_info">
 					<div className="profile_info_item">
 						<span className="profile_info_key">City:</span>
-						<span className="profile_info_value">{userProfile?.city}</span>
+						<span className="profile_info_value">
+							{userProfile?.city}
+						</span>
 					</div>
 					<div className="profile_info_item">
 						<span className="profile_info_key">From:</span>
-						<span className="profile_info_value">{userProfile?.from}</span>
+						<span className="profile_info_value">
+							{userProfile?.from}
+						</span>
 					</div>
 					<div className="profile_info_item">
 						<span className="profile_info_key">Relationship:</span>
-						<span className="profile_info_value">{userProfile?.relationship}</span>
+						<span className="profile_info_value">
+							{userProfile?.relationship}
+						</span>
 					</div>
 				</div>
 				<h3 className="rightbar_title">User Friends</h3>
 				<ul className="profile_following_list">
 					{users.map((u) => (
-						<li key={u?.id} className="profile_following_item">
-							<img
-								src={PF + u?.profilePicture}
-								onError={(e) => e.target.src=PF+'/person/noAvatar.png'}
-								alt=""
-								className="profile_following_image"
-							/>
-							<span className="profile_following_name">
-								{u?.displayName}
-							</span>
-						</li>
+						<Link
+							to={`/profile/${u?.id}?username=${u?.userName}`}
+							style={{ textDecoration: "none", color: "black" }}
+							className="profile_following_item"
+							key={u?.id}
+						>
+							<li key={u?.id} className="profile_following_item">
+								<img
+									src={PF + u?.profilePicture}
+									onError={(e) =>
+										(e.target.src =
+											PF + "/person/noAvatar.png")
+									}
+									alt=""
+									className="profile_following_image"
+								/>
+								<span className="profile_following_name">
+									{u?.displayName}
+								</span>
+							</li>
+						</Link>
 					))}
 				</ul>
 			</>
@@ -70,7 +86,7 @@ const Rightbar = ({ profile, onlineFriends, users,userProfile }) => {
 	return (
 		<div className="rightbar">
 			<div className="rightbar_wrapper">
-				{profile ? <Rightbar_profile /> : <Rightbar_home />}
+				{profile ? <RightbarProfile /> : <RightbarHome />}
 			</div>
 		</div>
 	);

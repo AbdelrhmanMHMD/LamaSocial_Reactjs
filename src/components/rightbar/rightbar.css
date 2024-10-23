@@ -21,6 +21,7 @@ img.rightbar_ad_image {
 	margin-bottom: 20px;
 	cursor: pointer;
 }
+
 h3.rightbar_title {
 	margin-bottom: 10px;
 }
@@ -36,7 +37,7 @@ h3.rightbar_title {
 span.profile_info_key {
 	font-weight: 300;
 }
-ul.profile_following_list {
+.profile_following_list {
 	padding: 0;
 	margin: 0;
 	list-style: none;
@@ -45,12 +46,14 @@ ul.profile_following_list {
 	gap: 10px;
 	justify-content: space-between;
 }
-li.profile_following_item {
+.profile_following_item {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	cursor: pointer;
 	flex: 1;
+	min-width: 60px;
+	max-width: 90px;
 }
 img.profile_following_image {
 	width: 60px;
@@ -61,5 +64,5 @@ img.profile_following_image {
 }
 span.profile_following_name {
 	font-size: 12px;
-    text-align: center;
+	text-align: center;
 }

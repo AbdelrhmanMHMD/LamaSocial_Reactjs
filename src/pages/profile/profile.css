@@ -1,39 +1,64 @@
-.profile{
-    display: flex;
+.profile {
+	display: flex;
 }
-.profile_right{
-    flex: 9;
+.profile_right {
+	flex: 9;
 }
-.profile_bottom{
-    display: flex;
+.profile_bottom {
+	display: flex;
+}
+.profile_bottom_left {
+	flex: 2;
+}
+.profile_bottom_right {
+	flex: 1;
+	padding: 35px 0;
 }
 .profile_cover {
-    height: 350px;
-    position: relative;
+	height: 350px;
+	position: relative;
 }
 img.profile_cover_image {
-    height: calc(100% - 70px);
-    width: 100%;
-    object-fit: cover;
+	height: calc(100% - 70px);
+	width: 100%;
+	object-fit: cover;
 }
 img.profile_Image {
-    position: absolute;
-    top: calc(100% - 70px);
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid white;
+	position: absolute;
+	top: calc(100% - 70px);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 140px;
+	height: 140px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 3px solid white;
+}
+.profile_add i {
+	margin-left: 5px;
+}
+.profile_add_button {
+	color: white;
+	background-color: var(--primary-color);
+	border: none;
+	padding: 5px 10px;
+	border-radius: 4px;
+	font-size: 14px;
+	transition: all 0.3s;
+}
+.profile_add_button:focus {
+	outline: none;
+}
+.profile_add_button:hover {
+	background-color: var(--secondary-color);
 }
 .profile_info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10px;
 }
 span.profiel_info_nickname {
-    font-weight: 300;
-    font-size: 14px;
+	font-weight: 300;
+	font-size: 14px;
 }

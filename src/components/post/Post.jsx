@@ -1,30 +1,49 @@
 import React, { useState } from "react";
 import "./post.css";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const Post = ({ post, author }) => {
-	const [numOfReacts, setNumOfReacts] = useState(post.numOfReacts);
-	const [isLiked, setIsLiked] = useState(false);
+const Post = ({ post, loggedUser, author }) => {
+	const [numOfReacts, setNumOfReacts] = useState(post?.reacts?.length);
+	const [isLiked, setIsLiked] = useState(
+		post?.reacts?.includes(loggedUser.id)
+	);
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-	const handlePostReact = () => {
+	const handlePostReact = async () => {
+		// handle num of reacts and isLiked state
 		setNumOfReacts(isLiked ? numOfReacts - 1 : numOfReacts + 1);
 		setIsLiked(!isLiked);
+
+		// update post reacts
+		if (isLiked) {
+			post.reacts = post.reacts.filter(
+				(reactId) => reactId !== loggedUser.id
+			);
+		} else {
+			post.reacts.push(loggedUser.id);
+		}
+		// update post in db
+		try {
+			axios.put("http://localhost:8000/posts/" + post.id, post);
+		} catch (err) {
+			console.log(err);
+		}
 	};
+
 	return (
 		<div className="post">
 			<div className="post_wrapper">
 				<div className="post_top">
 					<div className="post_top_left">
 						<Link
-							to={`/profile/${author.id}?username=${author.userName}`}
+							to={`/profile/${author?.id}?username=${author?.userName}`}
 						>
 							<img
 								className="post_top_left_image"
-								src={PF + author.profilePicture}
+								src={PF + author?.profilePicture}
 								onError={(e) =>
 									(e.target.src = PF + "/person/noAvatar.png")
 								}
@@ -33,11 +52,11 @@ const Post = ({ post, author }) => {
 						</Link>
 						<div className="post_info">
 							<Link
-								to={`/profile/${author.id}?username=${author.userName}`}
-								style={{textDecoration:'none'}}
+								to={`/profile/${author?.id}?username=${author?.userName}`}
+								style={{ textDecoration: "none" }}
 								className="post_info_username"
 							>
-									{author.displayName}
+								{author?.displayName}
 							</Link>
 							<span className="post_info_time">
 								{format(post.date)}
@@ -54,22 +73,24 @@ const Post = ({ post, author }) => {
 						src={PF + post.photo}
 						alt=""
 						className="post_center_image"
+						onDoubleClick={handlePostReact}
 					/>
 				</div>
 				<div className="post_bottom">
 					<div className="post_bottom_left">
-						<img
-							src={PF + "/like.png"}
-							alt="like"
+						<span
+							className="post_reacts_like"
 							onClick={handlePostReact}
-							className="post_reacts_image"
-						/>
-						<img
-							src={PF + "/love.png"}
-							alt="love"
-							onClick={handlePostReact}
-							className="post_reacts_image"
-						/>
+						>
+							{isLiked ? (
+								<i
+									className="fa-solid fa-heart"
+									style={{ color: "var(--primary-color)" }}
+								></i>
+							) : (
+								<i className="fa-regular fa-heart"></i>
+							)}
+						</span>
 						<span className="post_reacts_number">
 							{numOfReacts}
 						</span>

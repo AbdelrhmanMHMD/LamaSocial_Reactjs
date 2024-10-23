@@ -1,32 +1,63 @@
 import "./login.css";
+import { useContext, useState } from "react";
+import { loginCall } from "./../../apiCalls";
+import { AuthContext } from "./../../context/AuthContext";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const { user, isFetching, error, dispatch } = useContext(AuthContext);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		loginCall({ email, password }, dispatch);
+	};
+
 	return (
 		<div className="login">
 			<div className="login_wrapper">
 				<div className="login_left">
 					<h1 className="login_title">Lamasocial</h1>
 					<span className="login_desc">
-                        Connect with friends and the world around you on lamasocial
+						Connect with friends and the world around you on
+						lamasocial
 					</span>
 				</div>
-				<div className="login_right">
+				<form className="login_right" onSubmit={handleSubmit}>
 					<input
-						type="email"
-						placeholder="Email..."
 						className="login_input"
+						type="email"
+						required
+						placeholder="Email..."
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
 					/>
 					<input
 						type="password"
+						required
 						placeholder="Password..."
 						className="login_input"
+						minLength="6"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<button className="login_login_button">Log in</button>
+					{error ? <div className="login_error">Invalid email or password</div> : null}
+					<button
+						className="login_login_button"
+						disabled={isFetching}
+					>
+						{isFetching ? "Loading..." : "Login"}
+					</button>
 					<span className="login_forgot_password">
 						Forgot Password?
 					</span>
-					<button className="logn_signup_button">Create a new account</button>
-				</div>
+					<button className="login_signup_button" disabled={isFetching}>
+						<Link style={{color:"white",textDecoration:"none"}} to='/register'>
+						Create a new account
+						</Link>
+					</button>
+				</form>
 			</div>
 		</div>
 	);

@@ -1,5 +1,5 @@
-.share{
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+.share {
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 	margin-bottom: 20px;
 }
 .share_wrapper {
@@ -17,9 +17,9 @@
 	object-fit: cover;
 }
 .share_top_input {
-    width: 70%;
-    border: none;
-    height: 40px;
+	width: 70%;
+	border: none;
+	height: 40px;
 }
 .share_top_input:focus {
 	outline: none;
@@ -28,9 +28,9 @@
 	margin: 14px 6px;
 }
 .share_bottom {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 6px 8px 6px;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 6px 8px 6px;
 }
 .share_options {
 	display: flex;
@@ -39,7 +39,10 @@
 	display: flex;
 	align-items: center;
 	margin-right: 15px;
-    cursor: pointer;
+	cursor: pointer;
+}
+.share_option_file_input {
+	display: none;
 }
 .share_option_icon {
 	font-size: 16px !important;
@@ -49,13 +52,13 @@
 	font-size: 14px;
 }
 .share_button {
-    color: white;
-    background-color: var(--primary-color);
-    border: none;
-    padding: 7px 14px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: .3s all;
+	color: white;
+	background-color: var(--primary-color);
+	border: none;
+	padding: 7px 14px;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: 0.3s all;
 }
 .share_button:hover {
 	background-color: var(--secondary-color);

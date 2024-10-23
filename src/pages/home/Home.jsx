@@ -19,14 +19,21 @@ const Home = () => {
 		fetchLoggedUser();
 	}, []);
 
+	const [friends, setFriends] = useState([]);
 	const [users, setUsers] = useState([]);
 	useEffect(() => {
 		const fetchUsers = async () => {
-			const { data } = await axios.get("http://localhost:8000/users");
+			const { data } = await axios.get("http://localhost:3000/users");
 			setUsers(data);
+			const friendsList = data.filter(
+				(user) =>
+					loggedUser?.friends?.includes(user.id) ||
+					user.id === loggedUser.id
+			);
+			setFriends(friendsList);
 		};
 		fetchUsers();
-	}, []);
+	}, [loggedUser]);
 
 	const [posts, setPosts] = useState([]);
 	useEffect(() => {
@@ -41,9 +48,14 @@ const Home = () => {
 			<Topbar loggedUser={loggedUser} />
 
 			<div className="homeContainer">
-				<Leftbar users={users} />
-				<Feed loggedUser={loggedUser} posts={posts} users={users} />
-				<Rightbar onlineFriends={users.filter((u) => u.online)} />
+				<Leftbar users={friends} />
+				<Feed
+					loggedUser={loggedUser}
+					posts={posts}
+					users={users}
+					home
+				/>
+				<Rightbar onlineFriends={friends.filter((u) => u.online)} />
 			</div>
 		</div>
 	);
