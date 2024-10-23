@@ -17,12 +17,12 @@ const Profile = () => {
 	// add friend function
 	const handleAddFriend = async () => {
 		if (isFriend) {
-			loggedUser.friends = loggedUser.friends.filter(
+			loggedUser.friends = loggedUser.friends?.filter(
 				(f) => f !== +userProfileId
 			);
 			setIsFriend(false);
 		} else {
-			loggedUser.friends.push(+userProfileId);
+			loggedUser.friends?.push(+userProfileId);
 			setIsFriend(true);
 		}
 		// update loggedUser in loggedUser

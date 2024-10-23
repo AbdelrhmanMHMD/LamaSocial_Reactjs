@@ -27,6 +27,7 @@ const Register = () => {
 			nickName: "",
 			numOfFriendRequests: 0,
 			numOfMsgs: 0,
+			friends: [],
 			numOfNotifications: 0,
 			city: "",
 			from: "",

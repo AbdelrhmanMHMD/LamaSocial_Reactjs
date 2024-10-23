@@ -2,16 +2,20 @@ import "./login.css";
 import { useContext, useState } from "react";
 import { loginCall } from "./../../apiCalls";
 import { AuthContext } from "./../../context/AuthContext";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const { user, isFetching, error, dispatch } = useContext(AuthContext);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		loginCall({ email, password }, dispatch);
+		await loginCall({ email, password }, dispatch);
+
+		// reload
+
+		window.location.reload();
 	};
 
 	return (
@@ -42,7 +46,11 @@ const Login = () => {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					{error ? <div className="login_error">Invalid email or password</div> : null}
+					{error ? (
+						<div className="login_error">
+							Invalid email or password
+						</div>
+					) : null}
 					<button
 						className="login_login_button"
 						disabled={isFetching}
@@ -52,9 +60,15 @@ const Login = () => {
 					<span className="login_forgot_password">
 						Forgot Password?
 					</span>
-					<button className="login_signup_button" disabled={isFetching}>
-						<Link style={{color:"white",textDecoration:"none"}} to='/register'>
-						Create a new account
+					<button
+						className="login_signup_button"
+						disabled={isFetching}
+					>
+						<Link
+							style={{ color: "white", textDecoration: "none" }}
+							to="/register"
+						>
+							Create a new account
 						</Link>
 					</button>
 				</form>

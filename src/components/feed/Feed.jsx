@@ -5,9 +5,9 @@ import Post from "./../post/Post";
 const Feed = ({ loggedUser, posts, users, userProfile, home }) => {
 	// if user is on home page, show only posts from followed users
 	if (home) {
-		posts = posts.filter(
+		posts = posts?.filter(
 			(p) =>
-				loggedUser.friends.includes(p.userId) ||
+				loggedUser.friends?.includes(p.userId) ||
 				loggedUser.id === p.userId
 		);
 	}
