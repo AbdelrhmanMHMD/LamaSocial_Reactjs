@@ -30,7 +30,7 @@
 .share_bottom {
 	display: flex;
 	justify-content: space-between;
-	padding: 0 6px 8px 6px;
+	padding: 0 6px 8px 3px;
 }
 .share_image_preview {
 	display: flex;

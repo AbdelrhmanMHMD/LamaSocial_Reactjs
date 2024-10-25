@@ -14,7 +14,7 @@ function App() {
 		const fetchLoggedUser = async () => {
 			try {
 				const { data } = await axios.get(
-					"http://localhost:3000/loggedUser"
+					"http://localhost:8000/loggedUser"
 				);
 				setLoggedUser(data);
 			} catch (error) {

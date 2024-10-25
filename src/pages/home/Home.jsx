@@ -48,7 +48,7 @@ const Home = () => {
 			<Topbar loggedUser={loggedUser} />
 
 			<div className="homeContainer">
-				<Leftbar users={friends} />
+				<Leftbar users={users} />
 				<Feed
 					loggedUser={loggedUser}
 					posts={posts}

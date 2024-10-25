@@ -43,15 +43,13 @@ span.profile_info_key {
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 10px;
-	justify-content: space-between;
 }
 .profile_following_item {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	cursor: pointer;
-	flex: 1;
+	flex:1;
 	min-width: 60px;
 	max-width: 90px;
 }

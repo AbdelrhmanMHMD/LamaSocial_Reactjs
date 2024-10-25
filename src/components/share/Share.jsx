@@ -28,6 +28,9 @@ const Share = ({ loggedUser }) => {
 
 	const handleShareSubmit = (e) => {
 		e.preventDefault();
+		if (postText.trim() === "" && !postImage) {
+			return;
+		}
 
 		// create post object
 		const post = {
@@ -35,8 +38,8 @@ const Share = ({ loggedUser }) => {
 			date: new Date(),
 			desc: postText,
 			photo: postImage,
-			numOfComments: 0,
 			reacts: [],
+			comments: [],
 		};
 		// send post to server
 		try {

@@ -1,0 +1,88 @@
+.comment {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.comment_left img {
+	width: 32px;
+	height: 32px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+.comment_right {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	flex: 1;
+}
+.comment_right_top {
+    background: #eee;
+    border-radius: 15px;
+    padding: 6px 11px;
+    display: flex;
+    align-items: center;
+    gap:20px
+}
+.comment_content{
+    flex: 1;
+}
+span.name {
+	font-weight: bold;
+	font-size: 14px;
+	color: var(--primary-color);
+}
+
+form.comment_edit_form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.comment_edit_button {
+    border: none;
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 15px;
+}
+.comment_edit_input{
+    flex: 1;
+    border: 1px solid #eee;
+    padding: 5px 5px;
+    border-radius: 10px;
+	resize: none;
+	overflow-wrap: break-word; /* Wrap text within the box */
+	word-wrap: break-word; /* Older browsers support */
+	white-space: pre-wrap; /* Keeps line breaks */
+}
+.comment_edit_input:focus{
+    outline: none;
+}
+.comment_edit_save {
+    border: none;
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 16px;
+    padding: 0;
+}
+.comment_right_bottom {
+    padding-inline: 10px;
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+}
+.comment_reacts {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+.comment_reacts i {
+    cursor: pointer;
+}
+span.comment_reply {
+    cursor: pointer;
+    color: var(--primary-color);
+}
+button.comment_delete {
+    border: none;
+    color: var(--primary-color);
+    background: transparent;
+}

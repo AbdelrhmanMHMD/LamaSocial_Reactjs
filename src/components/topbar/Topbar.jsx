@@ -10,6 +10,43 @@ import { Link, NavLink } from "react-router-dom";
 
 const Topbar = ({ loggedUser }) => {
 	const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+	const [isSearching, setIsSearching] = useState(false);
+	const [filteredUsers, setFilteredUsers] = useState([]);
+
+	// load users data from server
+	const [users, setUsers] = useState([]);
+	useEffect(() => {
+		const fetchUsers = async () => {
+			const { data } = await axios.get("http://localhost:8000/users");
+			setUsers(data);
+		};
+		fetchUsers();
+	}, []);
+
+	const handleLogout = async () => {
+		//removing loggedUser from server
+		try {
+			await axios.put("http://localhost:3000/loggedUser", {});
+		} catch (err) {
+			console.log(err);
+		}
+
+		// reload
+		window.location.reload();
+	};
+
+	const handleResearch = async (e) => {
+		const searchText = e.target.value;
+		if (searchText.trim() !== "") {
+			setFilteredUsers(
+				users.filter((u) =>
+					u.displayName
+						.toLowerCase()
+						.includes(searchText.toLowerCase())
+				)
+			);
+		}
+	};
 	return (
 		<div className="topbarContainer">
 			<div className="topbarLeft">
@@ -20,7 +57,42 @@ const Topbar = ({ loggedUser }) => {
 			<div className="topbarCenter">
 				<div className="topbarSearch">
 					<SearchIcon className="topbarSearchIcon" />
-					<input type="text" placeholder="Search..." />
+					<input
+						type="text"
+						placeholder="Search..."
+						onChange={(e) => handleResearch(e)}
+						onFocus={() => setIsSearching(true)}
+						onBlur={() => setTimeout(() => setIsSearching(false),200)}
+					/>
+					{isSearching && (
+						<div className="search_suggestions">
+							{filteredUsers.map((user) => (
+								<Link
+									to={`/profile/${user.id}?username=${user.userName}`}
+									style={{
+										textDecoration: "none",
+										color: "black",
+									}}
+									key={user.id}
+								>
+									<div className="suggestion">
+										<img
+											className="suggestion_image"
+											src={PF + user.profilePicture}
+											onError={(e) => {
+												e.target.src =
+													PF + "/person/noAvatar.png";
+											}}
+											alt=""
+										/>
+										<span className="suggestion_name">
+											{user.displayName}
+										</span>
+									</div>
+								</Link>
+							))}
+						</div>
+					)}
 				</div>
 			</div>
 			<div className="topbarRight">
@@ -36,8 +108,9 @@ const Topbar = ({ loggedUser }) => {
 						to="/"
 						className="topbarLink"
 						style={{ textDecoration: "none" }}
+						onClick={handleLogout}
 					>
-						Timeline
+						Log out
 					</NavLink>
 				</div>
 				<div className="topbarIcons">
